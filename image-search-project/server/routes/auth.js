@@ -13,7 +13,7 @@ router.get(
     failureRedirect: `${process.env.CLIENT_URL}/login`,
   }),
   (req, res) => {
-    //if success, redirect to frontend 
+    //if success, redirect to frontend
     res.redirect(`${process.env.CLIENT_URL}/`);
   }
 );
@@ -26,14 +26,15 @@ router.get("/me", (req, res) => {
 });
 
 // Logout
-router.post("/logout", (req, res) => {
-  req.logout?.(); 
-  req.session.destroy((err) => {
-    res.clearCookie("connect.sid"); 
-    return res.json({ ok: true });
+router.post("/logout", (req, res, next) => {
+  req.logout(function (err) {
+    if (err) return next(err);
+    req.session.destroy((err) => {
+      if (err) console.error("Session destroy error:", err);
+      res.clearCookie("connect.sid");
+      res.json({ ok: true });
+    });
   });
 });
 
 module.exports = router;
-
-

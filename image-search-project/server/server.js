@@ -8,6 +8,7 @@ const passport = require("passport");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const authRoutes = require("./routes/auth");
+const apiRoutes = require("./routes/api");
 const configurePassport = require("./config/passport.js");
 
 const app = express();
@@ -59,6 +60,7 @@ app.use(
 
     // routes
     app.use("/auth", authRoutes);
+    app.use('/api', apiRoutes);
 
     const port = process.env.PORT || 5000;
     app.listen(port, () => console.log(`Server running on ${port}`));

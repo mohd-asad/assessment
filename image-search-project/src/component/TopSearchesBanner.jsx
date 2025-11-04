@@ -1,12 +1,36 @@
 import react, { useState, useEffect } from "react";
+import api from "../api/axios";
 
-const top = [
-    { term: 'Item A', count: 10 },
-    { term: 'Item B', count: 20 },
-    { term: 'Item C', count: 30 }
-  ];
+// const top = [
+//     { term: 'Item A', count: 10 },
+//     { term: 'Item B', count: 20 },
+//     { term: 'Item C', count: 30 }
+//   ];
 
 export default function TopSearchesBanner() {
+  const [top, setTop] = useState([]);
+  const [loading, setLoading] = useState([]);
+
+  useEffect(() => {
+    let mounted = true;
+    api
+      .get("/api/top-searches")
+      .then((res) => {
+        if (mounted) setTop(res.data.top || []);
+      })
+      .catch(console.error)
+      .finally(() => {
+        if (mounted) setLoading(false);
+      });
+
+    return () => {
+      mounted = false;
+    };
+  }, []);
+
+  if (loading) return <div className="px-4 py-2">Loading top searches...</div>;
+  if (!top.length) return null;
+
   return (
     <div className="bg-white p-3 rounded-md shadow-sm mb-4">
       <div className="flex items-center gap-3 overflow-x-auto">
