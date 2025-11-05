@@ -38,6 +38,8 @@ app.use(
       collectionName: "sessions",
     });
 
+    const isProduction = process.env.NODE_ENV === "production";
+
     app.use(
       session({
         secret: process.env.SESSION_SECRET,
@@ -45,10 +47,10 @@ app.use(
         saveUninitialized: false,
         store,
         cookie: {
-          maxAge: 1000 * 60 * 60 * 24 * 7, // 7 days
+          maxAge: 1000 * 60 * 60 * 24 * 7,
           httpOnly: true,
-          sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
-          secure: process.env.NODE_ENV === "production",
+          sameSite: isProduction ? "none" : "lax",
+          secure: isProduction,
         },
       })
     );
