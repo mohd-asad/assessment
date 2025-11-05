@@ -19,44 +19,82 @@ Deployment: Render + Vercel
 - Deployed on **Render (backend)** and **Vercel (frontend)**
 
 ## 🗂️ Folder Structure
+
 image-search-project/
+
 │
-├── client/  # React frontend (Vite + Tailwind)
-│ ├── api/axios.js # Axios instance 
-│ ├── components/ # UI components (TopSearches,Header, History, ImageGrid, Login, ProtectedRoute etc.)
-│ ├── context/AuthContext # Global Auth state
-│ ├── pages/ # Page components(Home.jsx, NotFound.jsx)
-│ └── main.jsx
-│ └── package.json
+├── client/ # React frontend (Vite + Tailwind)
+
+│ │ ├── api/axios.js # Axios instance
+
+│ │ ├── components/ # UI components (TopSearches, Header, History, ImageGrid, Login, ProtectedRoute etc.)
+
+│ │ ├── context/AuthContext.jsx # Global Auth state
+
+│ │ ├── pages/ # Page components (Home.jsx, NotFound.jsx)
+
+│ │ ├── main.jsx
+
+│ │ └── package.json
+
 │
-├── server/                                       # Express + Node.js backend
-│ ├── config/passport.js and db.js                # Passport OAuth strategies (Google/GitHub)
-│ ├── models/Search.js and User.js                # Search model (stores queries + counts)
-│ ├── routes/auth.js                              # Auth routes (/auth/google, /auth/me, etc.)
-│ ├── routes/api.js                               # API routes (Unsplash search, top searches, History)
-│ ├── server.js                                   # Main backend entry
-│ ├── utils/unsplash.js                           # Unsplash Api
-│ └── package.json
+├── server/ # Express + Node.js backend
+
+│ ├── config/
+
+│ │ ├── passport.js # Passport OAuth strategies (Google/GitHub)
+
+│ │ └── db.js # MongoDB connection setup
+
+│ ├── models/
+
+│ │ ├── Search.js # Search model (stores queries + counts)
+
+│ │ └── User.js # User model
+
+│ ├── routes/
+
+│ │ ├── auth.js # Auth routes (/auth/google, /auth/me, etc.)
+
+│ │ └── api.js # API routes (Unsplash search, top searches, history)
+
+│ ├── utils/
+
+│ │ └── unsplash.js # Unsplash API helper
+
+│ ├── server.js # Main backend entry
+
+│ ├── package.json
+
 │ └── .env
-├── .env
+│
+├── .env # Root-level env (optional)
+
 ├── README.md
+
 └── package.json
 
 ## ⚙️ Environment Variables (.env)
 Create a `.env` file in both the **frontend** and **backend** directories.
 
 MONGO_URI=mongodb+srv://<user>:<password>@cluster.mongodb.net/imageSearch
+
 SESSION_SECRET=asad_secret
+
 CLIENT_URL=https://your-frontend.vercel.app
+
 UNSPLASH_ACCESS_KEY=your_unsplash_api_key
 
 GOOGLE_CLIENT_ID=your_google_client_id
+
 GOOGLE_CLIENT_SECRET=your_google_client_secret
 
 GITHUB_CLIENT_ID=your_github_client_id
+
 GITHUB_CLIENT_SECRET=your_github_client_secret
 
 PORT=5000
+
 NODE_ENV=production
 
 ## 🧑‍💻Local Setup Instructions
@@ -97,13 +135,15 @@ http://localhost:5000/auth/google/callback
 
 ## 🧾 API Endpoints
 
-Endpoint	                    Method	              Description
-/auth/google	                 GET	                Redirects to Google login
-/auth/github	                 GET	                Redirects to GitHub login
-/auth/me	                     GET	                Returns current logged-in user
-/auth/logout	                 POST	                Logs out and clears session
-/api/search?query=<term>	     GET	                Fetches images from Unsplash API
-/api/top-searches	GET	         Returns              top 10 searches (Top 5 shown on UI)
+| Endpoint                   | Method | Description                                 |
+| -------------------------- | ------ | ------------------------------------------- |
+| `/auth/google`             | GET    | Redirects to Google login                   |
+| `/auth/github`             | GET    | Redirects to GitHub login                   |
+| `/auth/me`                 | GET    | Returns current logged-in user              |
+| `/auth/logout`             | POST   | Logs out and clears session                 |
+| `/api/search?query=<term>` | GET    | Fetches images from Unsplash API            |
+| `/api/top-searches`        | GET    | Returns top 10 searches (Top 5 shown on UI) |
+
 
 ## Screenshots
 <img width="960" height="485" alt="Screenshot 2025-11-05 231822" src="https://github.com/user-attachments/assets/b464a754-01d3-46bf-8fe8-dab3f7701cb1" />
