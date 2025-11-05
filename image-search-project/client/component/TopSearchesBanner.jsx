@@ -34,10 +34,8 @@ export default function TopSearchesBanner() {
   return (
     <div className="bg-white p-3 rounded-md shadow-sm mb-4">
       <div className="flex items-center gap-3 overflow-x-auto">
-        <h2 className="text-lg font-semibold text-gray-800">
-          Top Searches :
-        </h2>
-        {top.map((t, i) => (
+        <h2 className="text-lg font-semibold text-gray-800">Top Searches :</h2>
+        {top.slice(0, 5).map((t, i) => (
           <div
             key={i}
             className="px-3 py-1 border rounded-full whitespace-nowrap text-sm bg-gray-50"
@@ -46,6 +44,14 @@ export default function TopSearchesBanner() {
           </div>
         ))}
       </div>
+      {top.length > 5 && (
+        <button
+          onClick={() => setShowAll(!showAll)}
+          className="text-blue-400 hover:text-blue-300 hover:underline mt-3 block mx-auto"
+        >
+          {showAll ? "Show Less" : "View Full"}
+        </button>
+      )}
     </div>
   );
 }
