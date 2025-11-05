@@ -10,7 +10,6 @@ import api from "../api/axios";
 export default function TopSearchesBanner() {
   const [top, setTop] = useState([]);
   const [loading, setLoading] = useState([]);
-  const [showAll, setShowAll] = useState(false);
 
   useEffect(() => {
     let mounted = true;
@@ -45,14 +44,6 @@ export default function TopSearchesBanner() {
           </div>
         ))}
       </div>
-      {top.length > 5 && (
-        <button
-          onClick={() => setShowAll(!showAll)}
-          className="text-blue-400 hover:text-blue-300 hover:underline mt-3 block mx-auto"
-        >
-          {showAll ? "Show Less" : "View Full"}
-        </button>
-      )}
     </div>
   );
 }
