@@ -29,31 +29,31 @@ export default function Home() {
   }
 
   return (
-    <div className="py-4 mx-auto flex items-center justify-center">
+    <div className="min-h-screen bg-gray-950 text-gray-200 py-4 mx-auto flex items-center justify-center">
       <div className="flex items-start gap-4">
         <div className="flex-1">
           <TopSearchesBanner />
-          <div className="bg-white p-4 rounded-md shadow-sm mb-4">
+          <div className="bg-gray-900/70 p-4 rounded-md shadow-sm mb-4 border border-white/10">
             <form onSubmit={handleSearch} className="flex gap-2">
               <input
                 value={term}
                 onChange={e => setTerm(e.target.value)}
                 placeholder="Search images (e.g., mountains, cats)"
-                className="flex-1 p-2 border rounded"
+                className="flex-1 p-2 rounded bg-gray-800 text-gray-100 placeholder-gray-400 border border-white/10 focus:outline-none focus:ring-2 focus:ring-indigo-500"
               />
-              <button disabled={loading} className="px-4 py-2 bg-blue-600 text-white rounded">
+              <button disabled={loading} className="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 disabled:opacity-60 text-white rounded">
                 {loading ? 'Searching...' : 'Search'}
               </button>
             </form>
 
             {resultCount !== 0 && (
-              <p className="mt-3 text-sm text-gray-600">
+              <p className="mt-3 text-sm text-gray-300">
                 You searched for <strong>{term}</strong> — {resultCount} results.
               </p>
             )}
           </div>
 
-          <ImageGrid images={images} />
+          <ImageGrid images={images} term={term} />
         </div>
 
         <aside className="w-80">

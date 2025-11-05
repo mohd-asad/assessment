@@ -25,21 +25,31 @@ export default function HistorySidebar() {
 
   if (loading)
     return (
-      <div className="p-4 bg-white rounded shadow">Loading history...</div>
+      <div className="p-4 bg-gray-900/70 rounded-lg shadow-lg border border-white/10 text-gray-300">
+        <div className="flex items-center gap-2">
+          <div className="w-4 h-4 border-2 border-indigo-500 border-t-transparent rounded-full animate-spin"></div>
+          <span>Loading history...</span>
+        </div>
+      </div>
     );
 
   return (
-    <div className="bg-white p-4 rounded shadow">
-      <h3 className="font-semibold mb-2">Your search history</h3>
+    <div className="bg-gray-900/70 p-4 rounded-lg shadow-lg border border-white/10">
+      <h3 className="font-semibold mb-4 text-white text-lg">Your search history</h3>
       {history.length === 0 ? (
-        <p className="text-sm text-gray-500">No searches yet.</p>
+        <p className="text-sm text-gray-400 italic">No searches yet.</p>
       ) : (
         <ul className="space-y-2 text-sm">
           {history.map((h, idx) => (
-            <li key={idx} className="border-b pb-2">
+            <li 
+              key={idx} 
+              className="border-b border-white/10 pb-2 last:border-b-0 hover:bg-gray-800/50 rounded px-2 py-1 transition-colors duration-200 cursor-pointer group"
+            >
               <div className="flex items-center justify-between">
-                <div>{h.term}</div>
-                <div className="text-xs text-gray-400">
+                <div className="text-gray-200 group-hover:text-white font-medium transition-colors duration-200">
+                  {h.term}
+                </div>
+                <div className="text-xs text-gray-500 group-hover:text-gray-400 transition-colors duration-200">
                   {new Date(h.timestamp).toLocaleString()}
                 </div>
               </div>
