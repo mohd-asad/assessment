@@ -34,6 +34,9 @@ export default function TopSearchesBanner() {
   return (
     <div className="bg-white p-3 rounded-md shadow-sm mb-4">
       <div className="flex items-center gap-3 overflow-x-auto">
+        <h2 className="text-lg font-semibold text-gray-800">
+          Top Searches :
+        </h2>
         {top.map((t, i) => (
           <div
             key={i}

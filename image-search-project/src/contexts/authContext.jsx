@@ -17,7 +17,7 @@ export function AuthProvider({ children }) {
         setUser(res.data.user || null);
       })
       .catch((err) => {
-        // not logged in or server down
+        // not logged in 
         setUser(null);
       })
       .finally(() => {

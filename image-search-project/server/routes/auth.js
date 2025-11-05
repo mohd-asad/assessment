@@ -6,7 +6,12 @@ router.get(
   "/google",
   passport.authenticate("google", { scope: ["profile", "email"] })
 );
+router.get(
+  "/github",
+  passport.authenticate("github", { scope: ["user:email"] })
+);
 
+// Callbacks
 router.get(
   "/google/callback",
   passport.authenticate("google", {
@@ -16,6 +21,14 @@ router.get(
     //if success, redirect to frontend
     res.redirect(`${process.env.CLIENT_URL}/`);
   }
+);
+
+router.get(
+  "/github/callback",
+  passport.authenticate("github", {
+    failureRedirect: `${process.env.CLIENT_URL}/login`,
+  }),
+  (req, res) => res.redirect(`${process.env.CLIENT_URL}/`)
 );
 
 // Current session user
