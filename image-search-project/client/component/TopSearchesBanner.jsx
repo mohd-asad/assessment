@@ -10,6 +10,7 @@ import api from "../api/axios";
 export default function TopSearchesBanner() {
   const [top, setTop] = useState([]);
   const [loading, setLoading] = useState([]);
+  const [showAll, setShowAll] = useState(false);
 
   useEffect(() => {
     let mounted = true;
